@@ -5,7 +5,7 @@ from model.project import Project
 
 
 def test_add_new_project(app, db):
-    old_list = db.get_projects_list()
+    old_list = app.soap.get_projects_list()
     project = Project(name=random_string("Project Name", 10))
     app.project.add_new(project)
     new_list = db.get_projects_list()

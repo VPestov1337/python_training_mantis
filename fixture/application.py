@@ -5,10 +5,11 @@ from selenium import webdriver
 
 from fixture.project import ProjectHelper
 from fixture.session import SessionHelper
+from fixture.soap import SoapHelper
 
 
 class Application:
-    def __init__(self, browser, base_url):
+    def __init__(self, browser, base_url, username, password):
         if browser == "firefox":
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
@@ -21,7 +22,7 @@ class Application:
         self.wd.implicitly_wait(1)
         self.project = ProjectHelper(self)
         self.session = SessionHelper(self)
-
+        self.soap = SoapHelper(self, username, password)
         self.base_url = base_url
 
     def is_valid(self):
