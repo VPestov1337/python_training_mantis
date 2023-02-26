@@ -22,7 +22,7 @@ class Application:
         self.wd.implicitly_wait(1)
         self.project = ProjectHelper(self)
         self.session = SessionHelper(self)
-        self.soap = SoapHelper(self, username, password)
+        self.soap = SoapHelper(self, username, password, base_url=base_url)
         self.base_url = base_url
 
     def is_valid(self):

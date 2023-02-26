@@ -5,14 +5,15 @@ from model.project import Project
 
 
 class SoapHelper:
-    def __init__(self, app, username, password):
+    def __init__(self, app, username, password, base_url):
         self.app = app
-        self.client = client = Client("http://localhost/mantisbt-1.2.20/api/soap/mantisconnect.php?wsdl")
+        self.url = base_url + "api/soap/mantisconnect.php?wsdl"
+        self.client = client = Client(self.url)
         self.username = username
         self.password = password
 
     def can_login(self, username, password):
-        client = Client("http://localhost/mantisbt-1.2.20/api/soap/mantisconnect.php?wsdl")
+        client = Client(self.url)
         try:
             client.service.mc_login(username, password)
             return True
